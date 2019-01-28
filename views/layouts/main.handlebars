@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href="/assets/css/burger_style.css" type="text/css"/>
+        <title>Burgers</title>
+        <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+<body>
+    {{{ body }}}
+<script>
+$(function(){
+    $(".devour").on("click", function(event){
+        var id = $(this).data("id");
+        var eat = true;
+
+        var getEaten = {
+            devoured: eat
+        };
+
+        $.ajax("api/burgers/" + id, {
+            type: "PUT",
+            data: getEaten
+        }).then(
+            function(){
+                console.log("Ate This Burger: " + id);
+                location.reload();
+            }
+        );
+    });
+
+    $(".create-form").on("submit", function(event){
+        event.preventDefault();
+    
+        var newBurger = {
+            burger_name: $("#bur").val().trim(),
+            devoured: false
+        };
+       // console.log($("#bur").val().trim());
+
+        $.ajax("/api/burgers/", {
+            type: "POST",
+            data: newBurger
+        }).then(function(){
+            console.log("Made a New Burger");
+            location.reload();
+        });
+    });
+});
+</script>
+</body>
+</html>

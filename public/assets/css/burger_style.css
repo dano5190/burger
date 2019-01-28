@@ -1,0 +1,25 @@
+body{
+    background-color: lightblue;
+    font-size: 24px;
+    text-align: center;
+}
+
+.column{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+#eaten{
+    color: #999999;
+}
